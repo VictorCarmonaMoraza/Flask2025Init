@@ -25,3 +25,7 @@ def saludarnombre(nombre):
 @app.route('/edad/<int:edad>')
 def mostrar_edad(edad):
     return f'La edad es {edad}'
+
+@app.route('/mostrar/<nombre>', methods=['GET','POST'])
+def mostrar_nombre(nombre):
+    return f'Tu nombre es: {nombre}'
