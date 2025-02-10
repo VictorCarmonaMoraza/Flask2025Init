@@ -1,19 +1,26 @@
-from flask import Flask, request, render_template, url_for, jsonify
+from flask import Flask, request, render_template, url_for, jsonify, session
 from werkzeug.exceptions import abort
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
+
+app.secret_key='Mi_llave_secreta'
 
 ## la decoracion @ se denomina decorador
 ## la barra solo se considera la pagina de inicio
 ## http://localhost:5000/
 @app.route('/')
 def inicio():
-    app.logger.debug('Mensaje a nivel debug')
-    app.logger.info(f'Entramos al path {request.path}')
-    app.logger.warn('Mensaje a nivel warning')
-    app.logger.error('Mensaje a nivel error')
-    return 'Hola Mundo desde Flask desde sevilla'
+    if ' username' in session:
+        return 'El usuaio ya ha hecho login'
+    return 'No ha hecho login.'
+
+
+   # app.logger.debug('Mensaje a nivel debug')
+    #app.logger.info(f'Entramos al path {request.path}')
+    #app.logger.warn('Mensaje a nivel warning')
+    #app.logger.error('Mensaje a nivel error')
+    #return 'Hola Mundo desde Flask desde sevilla'
 
 @app.route('/saludar')
 def saludar():
