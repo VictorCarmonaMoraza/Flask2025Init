@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -7,4 +7,8 @@ app = Flask(__name__)
 ## http://localhost:5000/
 @app.route('/')
 def inicio():
-    return 'Hola Mundo desde Flask desde sevilñla'
+    app.logger.debug('Mensaje a nivel debug')
+    app.logger.info(f'Entramos al path {request.path}')
+    app.logger.warn('Mensaje a nivel warning')
+    app.logger.error('Mensaje a nivel error')
+    return 'Hola Mundo desde Flask desde sevilla'
