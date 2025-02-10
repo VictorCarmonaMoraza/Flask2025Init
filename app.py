@@ -12,3 +12,16 @@ def inicio():
     app.logger.warn('Mensaje a nivel warning')
     app.logger.error('Mensaje a nivel error')
     return 'Hola Mundo desde Flask desde sevilla'
+
+@app.route('/saludar')
+def saludar():
+    return 'Saludos'
+
+@app.route('/saludarnombre/<nombre>')
+def saludarnombre(nombre):
+    return f'Saludos {nombre}'
+
+
+@app.route('/edad/<int:edad>')
+def mostrar_edad(edad):
+    return f'La edad es {edad}'
