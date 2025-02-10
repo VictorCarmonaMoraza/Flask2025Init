@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
+from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
@@ -37,3 +38,11 @@ def mostrar_valores(nombre):
 @app.route('/mostrarvaloresplantilla/<nombre>', methods=['GET','POST'])
 def mostrar_valores_plantiila(nombre):
     return render_template('mostrar.html', parametro = nombre)
+
+@app.route('/redireccionar')
+def redireccionar():
+    return redirect(url_for('inicio'))
+
+@app.route('/redireccionar2')
+def redireccionar2():
+    return redirect(url_for('mostrar_nombre', nombre='juan'))

@@ -7,5 +7,12 @@
 <body>
 <h1> Mostrar Valores</h1>
 <h2>Tu nombre es {{parametro}}</h2>
+<div>
+    <!--Forma incorrecta pero valida-->
+    <a href="/">Regresar al incio</a>
+    <br><br>
+    <!--Froma correcta-->
+    <a href="{{url_for('mostrar_edad', edad =20)}}">Regresar al incicio 2 forma</a>
+</div>
 </body>
 </html>
