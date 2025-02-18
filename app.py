@@ -11,16 +11,20 @@ app.secret_key='Mi_llave_secreta'
 ## http://localhost:5000/
 @app.route('/')
 def inicio():
-    if ' username' in session:
-        return 'El usuaio ya ha hecho login'
+    if 'username' in session:
+        return f'El usuario ya ha hecho login {session["username"]}'
     return 'No ha hecho login.'
 
-
-   # app.logger.debug('Mensaje a nivel debug')
-    #app.logger.info(f'Entramos al path {request.path}')
-    #app.logger.warn('Mensaje a nivel warning')
-    #app.logger.error('Mensaje a nivel error')
-    #return 'Hola Mundo desde Flask desde sevilla'
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+    ## recuperamos usuario y password de sesion
+        usuario = request.form['username']
+        #agregar usuario a la session
+        session['username'] =usuario
+        ##session['username'] =request.form['username']
+        return redirect(url_for('inicio'))
+    return render_template('login.html')
 
 @app.route('/saludar')
 def saludar():
